@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="manifest" href="/manifest.json">
+    <link rel="stylesheet" href="resources/css/main.css?ver=4"/>
     <title>Find Food Truck</title>
 
     <!-- update the version number as needed -->
@@ -17,47 +19,279 @@
     <script defer src="/__/firebase/init.js"></script>
 
 
-  </head>
-  <body>
-  <div>
+    <style>
+        .subpage {
+            background: linear-gradient(120deg, #F5F4F5, #F5F4F5) fixed
+        }
+
+        .outer {
+            padding-top: 5%;
+            background-color: #ffffff;
+            background-color: rgba(255, 255, 255, 0.6);
+            width: 100%;
+
+        }
+
+        .mytable {
+            width: 70%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .container {
+            width: 75%;
+        }
+
+        .actions {
+            float: right;
+        }
+
+        .uiduid {
+            width: 100%;
+        }
+
+        .upwuid {
+            width: 100%;
+        }
+
+        body div {
+            font-size: 13pt;
+        }
+
+        button {
+            height: 3rem;
+        }
+
+        .keyList li {
+            width: 50%;
+            float: left;
+            list-style: none;
+        }
+
+        .keyList::after {
+            display: block;
+            content: "";
+            clear: both;
+        }
+
+        /* body {
+            background-image: url(/resources/images/bg.jpg);
+        } */
+    </style>
+</head>
+<body class="subpage">
+
+<!-- Header -->
+<header id="header">
+    <div class="logo">
+        <a href="/board/list">
+
+            <i class="fa fa-truck"></i> foodtruck </a>
+
+    </div>
+    <a href="#menu">Menu</a>
+</header>
+
+<!-- Nav -->
+<nav id="menu">
+    <ul class="links">
+        <li><a href="/board/list">Home</a></li>
+        <li><a href="/up/ajax">Image gallery</a></li>
+    </ul>
+</nav>
+
+<!-- One -->
+<section id="One" class="wrapper style3">
+    <div class="inner">
+        <header class="align-center">
+            <p>WHAT DO YOU WANT TO EAT?</p>
+            <h2>FOOD TRUCK</h2>
+        </header>
+    </div>
+</section>
+
+
+<!-- Main -->
+<div id="main" class="container">
+    <div class="outer">
+        <div class="mytable">
+            <h3><i class="fa fa-key" aria-hidden="true"></i> My Keyword</h3>
+            <hr>
+            <h3>Choose keyword. </h3>
+
+            <ul class="keyList">
+                <li>
+                    <input type="checkbox" id="copy" name="copy">
+                    <label for="copy">새우</label>
+                </li>
+                <li>
+                    <input type="checkbox" id="copy2" name="copy2">
+                    <label for="copy2">닭발</label>
+                </li>
+                <li>
+                    <input type="checkbox" id="copy3" name="copy3">
+                    <label for="copy3">커피</label>
+                </li>
+                <li>
+                    <input type="checkbox" id="copy4" name="copy4">
+                    <label for="copy4">초밥</label>
+                </li>
+                <li>
+                    <input type="checkbox" id="copy5" name="copy5">
+                    <label for="copy5">곱창</label>
+                </li>
+                <li>
+                    <input type="checkbox" id="copy6" name="copy6">
+                    <label for="copy6">스테이크</label>
+                </li>
+                <li>
+                    <input type="checkbox" id="copy7" name="copy7">
+                    <label for="copy7">타코야키</label>
+                </li>
+                <li>
+                    <input type="checkbox" id="copy8" name="copy8">
+                    <label for="copy8">핫도그</label>
+                </li>
+            </ul>
+            <hr>
+            <div style="text-align:right; margin-top:15px; padding-bottom:15px"><input type="button" value="Choose!">
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- Footer -->
+<footer id="footer">
+    <div class="container">
+        <ul class="icons">
+            <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+            <li><a href="#" class="icon fa-facebook"><span
+                    class="label">Facebook</span></a></li>
+            <li><a href="#" class="icon fa-instagram"><span
+                    class="label">Instagram</span></a></li>
+            <li><a href="#" class="icon fa-envelope-o"><span
+                    class="label">Email</span></a></li>
+        </ul>
+    </div>
+    <div class="copyright">&copy; Untitled. All rights reserved.</div>
+</footer>
+
+<!-- Scripts -->
+<script src="resources/js/jquery.min.js"></script>
+<script src="resources/js/jquery.scrollex.min.js"></script>
+<script src="resources/js/skel.min.js"></script>
+<script src="resources/js/util.js"></script>
+<script src="resources/js/main.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+
+<div>
     <h1>Hello~~!!welcome~~2assasadasssadsdds3123</h1>
-    <h1>Commit Test</h1>
-  </div>
+    <h1>TOKEN</h1>
+    <h1 id="tokenUI"></h1>
+    <button id="btn"></button>
+</div>
 
-  <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase.js"></script>
-  <script>
-      // Initialize Firebase
-      var config = {
-          apiKey: "AIzaSyB8HBoFl5-x61YX3Gd6U5lHGqspOlB-SUE",
-          authDomain: "hscandy-b0a6d.firebaseapp.com",
-          databaseURL: "https://hscandy-b0a6d.firebaseio.com",
-          projectId: "hscandy-b0a6d",
-          storageBucket: "hscandy-b0a6d.appspot.com",
-          messagingSenderId: "744061303057"
-      };
-      firebase.initializeApp(config);
-  </script>
+<script src="https://www.gstatic.com/firebasejs/5.4.1/firebase.js"></script>
+<script>
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyB8HBoFl5-x61YX3Gd6U5lHGqspOlB-SUE",
+        authDomain: "hscandy-b0a6d.firebaseapp.com",
+        databaseURL: "https://hscandy-b0a6d.firebaseio.com",
+        projectId: "hscandy-b0a6d",
+        storageBucket: "hscandy-b0a6d.appspot.com",
+        messagingSenderId: "744061303057"
+    };
+    firebase.initializeApp(config);
+</script>
 
-  <script>
-      // Retrieve Firebase Messaging object.
-      const messaging = firebase.messaging();
+<script>
+    // Retrieve Firebase Messaging object.
+    const messaging = firebase.messaging();
+    var myToken;
+    messaging.requestPermission().then(function () { //토큰을 받은 경우
 
-      messaging.requestPermission().then(function() {
+        console.log('Notification permission granted.');
 
-          console.log('Notification permission granted.');
+        // Get Instance ID token. Initially this makes a network call, once retrieved
+        // subsequent calls to getToken will return from cache.
+        messaging.getToken().then(function (currentToken) {
+            if (currentToken) {
+                console.log("1");
+                console.log(currentToken);
+                document.querySelector("#tokenUI").innerHTML = currentToken;
+                myToken = currentToken;
 
-          // TODO(developer): Retrieve an Instance ID token for use with FCM.
+            } else {
+                console.log("2");
+                // Show permission request.
+                console.log('No Instance ID token available. Request permission to generate one.');
+                // Show permission UI.
 
-          // ...
+            }
+        }).catch(function (err) {
+            console.log("3");
+            console.log('An error occurred while retrieving token. ', err);
+        });
 
-      }).catch(function(err) {
+        // Callback fired if Instance ID token is updated.
+        messaging.onTokenRefresh(function () {
+            messaging.getToken().then(function (refreshedToken) {
+                console.log("4");
+                console.log('Token refreshed.');
+                document.querySelector("#tokenUI").innerHTML = refreshedToken;
+                myToken = refreshedToken;
+            }).catch(function (err) {
+                console.log("5");
+                console.log('Unable to retrieve refreshed token ', err);
+            });
+        });
 
-          console.log('Unable to get permission to notify.', err);
+    }).catch(function (err) { //토큰을 못받은 경우
+        console.log('Unable to get permission to notify.', err);
 
-      });
-
-  </script>
+    });
 
 
-  </body>
+    messaging.onMessage(function (payload) { //알림받기
+        console.log("Message received. ", payload);
+        alert(payload.data.title);
+        // ...
+
+    });
+
+    var db = firebase.database();
+    var ref = db.ref("candy");
+    console.log("ref....................", ref);
+
+
+
+
+
+    $("#btn").on("click", function () {
+        console.dir(something);
+        alert(myToken);
+        var keyname = myToken;
+        var something = {};
+        something[keyname] = 'value';
+
+        ref.child("/consumer").set(something, function () {
+            console.log(myToken);
+            console.log("saved....");
+        });
+        ref.child("/consumer").set({id:"aaa"}, function () {
+            console.log("saved....");
+        });
+
+    });
+
+
+</script>
+
+
+</body>
 </html>
