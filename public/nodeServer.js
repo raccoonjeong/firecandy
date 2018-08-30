@@ -14,7 +14,7 @@ var message = {
         'title': '이거 좀 재밌을지도..',
         'body': '이거 좀 재밌음..',
         'icon': 'firebase-logo.png',
-        'click_action': 'http://localhost:8081'
+        'click_action': 'http://localhost:8080'
     },
     token: registrationToken
 };
