@@ -121,40 +121,41 @@
 
             <ul class="keyList">
                 <li>
-                    <input type="checkbox" id="copy" name="copy">
+                    <input type="checkbox" id="copy" name="check[]" value="새우">
                     <label for="copy">새우</label>
                 </li>
                 <li>
-                    <input type="checkbox" id="copy2" name="copy2">
+                    <input type="checkbox" id="copy2" name="check[]" value="닭발">
                     <label for="copy2">닭발</label>
                 </li>
                 <li>
-                    <input type="checkbox" id="copy3" name="copy3">
+                    <input type="checkbox" id="copy3" name="check[]" value="커피">
                     <label for="copy3">커피</label>
                 </li>
                 <li>
-                    <input type="checkbox" id="copy4" name="copy4">
+                    <input type="checkbox" id="copy4" name="check[]"  value="초밥">
                     <label for="copy4">초밥</label>
                 </li>
                 <li>
-                    <input type="checkbox" id="copy5" name="copy5">
+                    <input type="checkbox" id="copy5" name="check[]"  value="곱창">
                     <label for="copy5">곱창</label>
                 </li>
                 <li>
-                    <input type="checkbox" id="copy6" name="copy6">
+                    <input type="checkbox" id="copy6" name="check[]"  value="스테이크">
                     <label for="copy6">스테이크</label>
                 </li>
                 <li>
-                    <input type="checkbox" id="copy7" name="copy7">
+                    <input type="checkbox" id="copy7" name="check[]"  value="타코야키">
                     <label for="copy7">타코야키</label>
                 </li>
                 <li>
-                    <input type="checkbox" id="copy8" name="copy8">
+                    <input type="checkbox" id="copy8" name="check[]"  value="핫도그">
                     <label for="copy8">핫도그</label>
                 </li>
             </ul>
             <hr>
-            <div style="text-align:right; margin-top:15px; padding-bottom:15px"><input type="button" value="Choose!">
+            <div style="text-align:right; margin-top:15px; padding-bottom:15px">
+                <input type="button" value="Reset" id="reBtn" style = "margin:10px"><input type="button" value="Choose!" id="btn" style = "margin:10px">
             </div>
 
         </div>
@@ -188,12 +189,6 @@
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
 
-<div>
-    <h1>Hello~~!!welcome~~2assasadasssadsdds3123</h1>
-    <h1>TOKEN</h1>
-    <h1 id="tokenUI"></h1>
-    <button id="btn"></button>
-</div>
 
 <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase.js"></script>
 <script>
@@ -223,7 +218,7 @@
             if (currentToken) {
                 console.log("1");
                 console.log(currentToken);
-                document.querySelector("#tokenUI").innerHTML = currentToken;
+               // document.querySelector("#tokenUI").innerHTML = currentToken;
                 myToken = currentToken;
 
             } else {
@@ -243,7 +238,7 @@
             messaging.getToken().then(function (refreshedToken) {
                 console.log("4");
                 console.log('Token refreshed.');
-                document.querySelector("#tokenUI").innerHTML = refreshedToken;
+                //document.querySelector("#tokenUI").innerHTML = refreshedToken;
                 myToken = refreshedToken;
             }).catch(function (err) {
                 console.log("5");
@@ -268,24 +263,57 @@
     var ref = db.ref("candy");
     console.log("ref....................", ref);
 
-
-
+    $("#reBtn").on("click", function () {
+        var test = confirm("키워드를 초기화하시겠습니까?");
+        if(!test){
+            return;
+        }else{
+            console.log("메롱롱");
+            ref.child("/consumer").child(myToken).remove();
+        }
+    });
 
 
     $("#btn").on("click", function () {
-        console.dir(something);
-        alert(myToken);
-        var keyname = myToken;
-        var something = {};
-        something[keyname] = 'value';
 
-        ref.child("/consumer").set(something, function () {
+        alert(myToken);
+        var checkArr = [];
+        var currentDate = new Date();
+        var time = "" + currentDate.getFullYear() + "."
+        + currentDate.getMonth() + "."
+        + currentDate.getDay() + "."
+        + currentDate.getHours() + ":"
+        + currentDate.getMinutes()+":"
+        + currentDate.getSeconds();
+
+        if(!$("input:checkbox[name='check[]']").is(":checked")){
+            alert("키워드를 하나 이상 체크하세요.");
+            return;
+        }else{
+            $("input:checkbox[name='check[]']:checked").each(function(e){
+              checkArr.push($(this).val());
+            });
+            $.each(checkArr, function (index, item) {
+                console.log(index, item); //배열내용확인
+                console.log(time);
+
+                ref.child("/consumer").child(myToken).child(item).set({timestamp:time}, function () {
+                    console.log("saved....");
+                });
+
+            })
+
+
+        }
+/*
+        ref.child("/consumer").child(myToken).push({1:2}, function () {
             console.log(myToken);
             console.log("saved....");
-        });
-        ref.child("/consumer").set({id:"aaa"}, function () {
-            console.log("saved....");
-        });
+        });*/
+
+
+
+
 
     });
 

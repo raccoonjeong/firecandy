@@ -6,7 +6,7 @@ admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
     databaseURL: "https://hscandy-b0a6d.firebaseio.com"
 });
-var registrationToken = "dRJhr9Lk_Fo:APA91bFNCKBBvvEJnlvQeQxsF1JTxD-0ZtwvEL1f-nCiqMUQvUUImgjkW41tWax-E40luy3Mjf44MtBefNSTm9tFhp44wmIeqL-KamV214hmLG6ftXtoThfsLqlIU0WbcjW6OxFuUCCT";
+var registrationToken = "etUg8xrpRPg:APA91bEaP6nsbUKjfKVpDdMpsAjEwkHlLwm1dU5OZcLzy8Sz4lLu3zf-cPTbX2WgDzSnkw4yRo8ZV59ETqqnrNOcKc-olgHcBQSBCjj6GDL0Y4x7a3q-x4mTNB07syvr52JNrfWgPVSh";
 
 // See documentation on defining a message payload.
 var message = {
