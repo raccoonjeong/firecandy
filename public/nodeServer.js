@@ -22,11 +22,52 @@ var message = {
 // Send a message to the device corresponding to the provided
 // registration token.
 
-admin.messaging().send(message)
+/*admin.messaging().send(message)
     .then((response) => {
         // Response is a message ID string.
         console.log('Successfully sent message:', response);
     })
     .catch((error) => {
         console.log('Error sending message:', error);
-    });
+    });*/
+
+var db = admin.database();
+var sellerRef = db.ref("candy/seller");
+var consumRef = db.ref("candy/consumer");
+/*sellerRef.on('value', function(snapshot) {
+    console.log("밸류..............");
+    console.log(snapshot.val());
+});*/
+/*
+sellerRef.on('child_added', function(data) {
+    console.log("ADDED..............");
+    console.log(data.val());
+    var dbKeyword = data.val().keyword;
+    var dbStore = data.val().store;
+    console.log("............",dbKeyword);
+    console.log("............",dbStore);
+
+});*/
+/*var a = consumRef.orderByChild("닭발");*/
+/*consumRef.equalTo("id").once('value', function(data){
+    console.log('8번 :' , data.val());
+});*/
+
+
+//임시완성
+consumRef.on('value', function(snapshot) {
+    console.log("밸류..............");
+    console.log(snapshot.val());
+    var allData = snapshot.val();
+    for(tokenToFind in allData){
+
+        for(keyToFind in allData[tokenToFind]){
+
+            if(keyToFind==="닭발"){
+                console.log("이 키워드의 토큰은.."+tokenToFind);
+            }
+        }
+    }
+
+
+});
