@@ -9,11 +9,16 @@ admin.initializeApp({
 var db = admin.database();
 var sellerRef = db.ref("candy/seller");
 var consumRef = db.ref("candy/consumer");
-/*sellerRef.on('value', function(snapshot) {
+
+/*
+//그냥 해당경로 데이터 조회하기
+sellerRef.on('value', function(snapshot) {
     console.log("밸류..............");
     console.log(snapshot.val());
-});*/
+});
+*/
 
+//해당경로에 ADD되면 감지하여 작동
 sellerRef.on('child_added', function (data) {
     console.log("ADDED..............");
     console.log(data.val());
@@ -24,14 +29,9 @@ sellerRef.on('child_added', function (data) {
 
     findToken(dbKeyword, dbStore);
 
-
 });
-/*var a = consumRef.orderByChild("닭발");*/
 
-/*consumRef.equalTo("id").once('value', function(data){
-    console.log('8번 :' , data.val());
-});*/
-
+//추가된 데이터의 키워드로, 그 키워드를 등록한 사용자의 토큰 검색하고 sendMsg 함수 호출
 function findToken(key, store) {
     var tokenToReturn = null;
     consumRef.on('value', function (snapshot) {
@@ -41,19 +41,14 @@ function findToken(key, store) {
         var allData = snapshot.val();
 
         for (tokenToFind in allData) {
-
             for (keyToFind in allData[tokenToFind]) {
-
                 if (keyToFind === key) {
                     console.log(key+ ", 이 키워드의 토큰은.." + tokenToFind);
-
                     sendMsg(tokenToFind, store);
-
                 };
             }
         }
     });
-
 }
 
 function sendMsg(token, store) {
