@@ -24,15 +24,17 @@ sellerRef.on('child_added', function (data) {
     console.log(data.val());
     var dbKeyword = data.val().keyword;
     var dbStore = data.val().store;
+    var dbFno = data.val().fno;
     console.log("............", dbKeyword);
     console.log("............", dbStore);
+    console.log("............", dbFno);
 
-    findToken(dbKeyword, dbStore);
+    findToken(dbKeyword, dbStore, dbFno);
 
 });
 
 //추가된 데이터의 키워드로, 그 키워드를 등록한 사용자의 토큰 검색하고 sendMsg 함수 호출
-function findToken(key, store) {
+function findToken(key, store, fno) {
     var tokenToReturn = null;
     consumRef.on('value', function (snapshot) {
         console.log("손님별 키워드들..............");
@@ -44,21 +46,21 @@ function findToken(key, store) {
             for (keyToFind in allData[tokenToFind]) {
                 if (keyToFind === key) {
                     console.log(key+ ", 이 키워드의 토큰은.." + tokenToFind);
-                    sendMsg(tokenToFind, store);
+                    sendMsg(tokenToFind, store, fno);
                 };
             }
         }
     });
 }
 
-function sendMsg(token, store) {
+function sendMsg(token, store, fno) {
 
     var message = {
         data: {
             'title': store,
             'body': store + " 영업 시작합니다.",
             'icon': 'firebase-logo.png',
-            'click_action': 'http://localhost:8080'
+            'click_action': 'http://localhost:8080/truck/read?fno='+fno
         },
         token: token
     };

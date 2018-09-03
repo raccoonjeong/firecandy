@@ -160,13 +160,7 @@
 
         </div>
     </div>
-    <div style="width:30%;">
-        seller의 오픈(등록) 테스트용..<br>
-        userId <input type="text" class="uidInput" name="uid">
-        keyword <input type="text" class="keyInput" name="key">
-        store <input type="text" class="storeInput" name="store">
-        <button class="testBtn">submit</button>
-    </div>
+
 </div>
 
 
@@ -310,21 +304,7 @@
     });
 
 
-    //테스트용
-    $(".testBtn").on("click", function () {
-        var uidVal = $("input:text[name='uid']").val();
-        var keyVal = $("input:text[name='key']").val();
-        var storeVal = $("input:text[name='store']").val();
 
-        console.log(uidVal, keyVal, storeVal);
-
-        ref.child("/seller").child(uidVal).set({keyword:keyVal, store:storeVal}, function () {
-            console.log("TestSaved....");
-            uidVal="";
-            keyVal="";
-            storeVal="";
-        });
-    })
 </script>
 
 
