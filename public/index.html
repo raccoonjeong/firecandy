@@ -121,36 +121,36 @@
 
             <ul class="keyList">
                 <li>
-                    <input type="checkbox" id="copy" name="check[]" value="새우">
-                    <label for="copy">새우</label>
+                    <input type="checkbox" id="새우" name="check[]" value="새우">
+                    <label for="새우">새우</label>
                 </li>
                 <li>
-                    <input type="checkbox" id="copy2" name="check[]" value="닭발">
-                    <label for="copy2">닭발</label>
+                    <input type="checkbox" id="닭발" name="check[]" value="닭발">
+                    <label for="닭발">닭발</label>
                 </li>
                 <li>
-                    <input type="checkbox" id="copy3" name="check[]" value="커피">
-                    <label for="copy3">커피</label>
+                    <input type="checkbox" id="커피" name="check[]" value="커피">
+                    <label for="커피">커피</label>
                 </li>
                 <li>
-                    <input type="checkbox" id="copy4" name="check[]"  value="초밥">
-                    <label for="copy4">초밥</label>
+                    <input type="checkbox" id="초밥" name="check[]"  value="초밥">
+                    <label for="초밥">초밥</label>
                 </li>
                 <li>
-                    <input type="checkbox" id="copy5" name="check[]"  value="곱창">
-                    <label for="copy5">곱창</label>
+                    <input type="checkbox" id="곱창" name="check[]"  value="곱창">
+                    <label for="곱창">곱창</label>
                 </li>
                 <li>
-                    <input type="checkbox" id="copy6" name="check[]"  value="스테이크">
-                    <label for="copy6">스테이크</label>
+                    <input type="checkbox" id="스테이크" name="check[]"  value="스테이크">
+                    <label for="스테이크">스테이크</label>
                 </li>
                 <li>
-                    <input type="checkbox" id="copy7" name="check[]"  value="타코야키">
-                    <label for="copy7">타코야키</label>
+                    <input type="checkbox" id="타코야키" name="check[]"  value="타코야키">
+                    <label for="타코야키">타코야키</label>
                 </li>
                 <li>
-                    <input type="checkbox" id="copy8" name="check[]"  value="핫도그">
-                    <label for="copy8">핫도그</label>
+                    <input type="checkbox" id="핫도그" name="check[]"  value="핫도그">
+                    <label for="핫도그">핫도그</label>
                 </li>
             </ul>
             <hr>
@@ -222,6 +222,18 @@
                // document.querySelector("#tokenUI").innerHTML = currentToken;
                 myToken = currentToken;
 
+                console.log("왜안돼");
+                console.log(ref);
+                console.log(myToken);
+                ref.child("/consumer").child(myToken).on('value', function (snapshot) {
+                    console.log("밸류..............");
+                    var data = snapshot.val();
+                    console.log(data);
+                    $.each(data, function(index, item){
+                        $('input:checkbox[id='+index+']').prop('checked', true);
+                    });
+                });
+
             } else {
                 console.log("2");
                 // Show permission request.
@@ -241,6 +253,20 @@
                 console.log('Token refreshed.');
                 //document.querySelector("#tokenUI").innerHTML = refreshedToken;
                 myToken = refreshedToken;
+                console.log("왜안돼");
+                console.log(ref);
+                console.log(myToken);
+                ref.child("/consumer").child(myToken).on('value', function (snapshot) {
+                    console.log("밸류..............");
+                    var data = snapshot.val();
+                    console.log(data);
+                    $.each(data, function(index, item){
+                        $('input:checkbox[id='+index+']').prop('checked', true);
+                    });
+                
+
+
+                });
             }).catch(function (err) {
                 console.log("5");
                 console.log('Unable to retrieve refreshed token ', err);
@@ -302,6 +328,8 @@
             })
         }
     });
+
+
 
 
 
